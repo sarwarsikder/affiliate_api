@@ -14,12 +14,12 @@ return new class extends Migration {
     {
         Schema::create('image_galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('shop_image');
+            $table->string('image_path');
 
-            $table->integer('product_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products');
 
-            $table->integer('shop_id')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->foreign('shop_id')->references('id')->on('shops');
 
             $table->timestamps();

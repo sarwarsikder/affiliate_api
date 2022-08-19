@@ -15,10 +15,10 @@ return new class extends Migration {
         Schema::create('user_shop_follows', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('shop_id')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->foreign('shop_id')->references('id')->on('shops');
 
             $table->boolean('follow')->nullable();

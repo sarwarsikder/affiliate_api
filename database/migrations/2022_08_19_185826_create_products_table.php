@@ -18,10 +18,10 @@ return new class extends Migration {
             $table->text('product_description');
             $table->date('product_validity');
 
-            $table->integer('product_category_id')->nullable();
+            $table->unsignedBigInteger('product_category_id')->nullable();
             $table->foreign('product_category_id')->references('id')->on('product_categories');
 
-            $table->integer('shop_id')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->foreign('shop_id')->references('id')->on('shops');
 
             $table->timestamps();

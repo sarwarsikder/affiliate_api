@@ -18,8 +18,7 @@ return new class extends Migration {
             $table->string('shop_logo')->nullable();
             $table->text('shop_description')->nullable();
             $table->text('shop_benefits')->nullable();
-
-            $table->integer('shop_category_id')->nullable();
+            $table->unsignedBigInteger('shop_category_id')->nullable();
             $table->foreign('shop_category_id')->references('id')->on('shop_categories');
 
             $table->timestamps();

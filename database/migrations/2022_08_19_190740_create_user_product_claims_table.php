@@ -14,10 +14,10 @@ return new class extends Migration {
     {
         Schema::create('user_product_claims', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('product_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products');
 
             $table->timestamps();
