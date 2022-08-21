@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ShopResource;
 use App\Models\Shop;
+use App\Models\UserShopFollow;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -85,4 +86,40 @@ class ShopController extends Controller
     {
         //
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\Shop $shop
+     * @return \Illuminate\Http\Response
+     */
+    public function shop_follow_unfollow(Request $request)
+    {
+
+        $user_shop_follow_model = new UserShopFollow();
+
+        $user_shop_follow_model_data = $user_shop_follow_model::where('user_id', auth()->user()->id)
+            ->where('shop_id', $request['shop_id'])
+            ->get();
+
+
+        if (count($user_shop_follow_model_data) <= 0) {
+            $user_shop_follow_model->follow = $request['follow'];
+            $user_shop_follow_model->user_id = auth()->user()->id;
+            $user_shop_follow_model->shop_id = $request['shop_id'];
+            $user_shop_follow_model->save();
+        } else {
+            $user_shop_follow_model = $user_shop_follow_model::find($user_shop_follow_model_data[0]->id);
+            $user_shop_follow_model->follow = $request['follow'];
+            $user_shop_follow_model->save();
+        }
+
+        if ($request['follow']) {
+            return response()->json(['message' => 'Shop successfully followed'], 201);
+        } else {
+            return response()->json(['message' => 'Shop successfully unfollowed'], 201);
+        }
+    }
+
 }
