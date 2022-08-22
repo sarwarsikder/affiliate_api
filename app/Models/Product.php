@@ -19,4 +19,10 @@ class Product extends Model
         return $this->belongsTo(Shop::class);
     }
 
+    public function product_claimed()
+    {
+        return $this->hasOne(UserProductClaim::class)
+            ->where('user_id', auth()->user()->id);
+    }
+
 }

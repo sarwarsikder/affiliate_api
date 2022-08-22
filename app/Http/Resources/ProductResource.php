@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'product_validity' => $this->product_validity,
             'shop' => $this->get_shop($this->shop),
             'product_category' => $this->get_product_category($this->product_category),
+            'product_claim' => ($this->product_claimed != null) ? $this->get_claim($this->product_claimed) : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'product_details' => url('/') . '/ap/products/' . $this->id
@@ -42,6 +43,14 @@ class ProductResource extends JsonResource
         return [
             'id' => $product_category->id,
             'name' => $product_category->name,
+        ];
+    }
+
+    public function get_claim($product_claimed)
+    {
+        return [
+            'id' => $product_claimed->id,
+            'claim' => $product_claimed->claim,
         ];
     }
 }

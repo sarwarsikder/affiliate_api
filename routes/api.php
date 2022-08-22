@@ -35,6 +35,7 @@ Route::group([
 
     Route::get('products', [ProductController::class, 'index']);
     Route::get('products/{id}', [ProductController::class, 'show']);
+    Route::post('products-claim', [ProductController::class, 'product_claim']);
     /*Route::post('products', [ProductController::class, 'store']);
     Route::put('products/{products}', [ProductController::class, 'update']);
     Route::delete('products/{products}', [ProductController::class, 'delete']);*/
@@ -43,7 +44,6 @@ Route::group([
     Route::get('shops', [ShopController::class, 'index']);
     Route::get('shops/{id}', [ShopController::class, 'show']);
     Route::post('shops-follow-unfollow', [ShopController::class, 'shop_follow_unfollow']);
-
 
 });
 

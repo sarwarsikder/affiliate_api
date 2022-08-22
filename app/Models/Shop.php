@@ -13,4 +13,10 @@ class Shop extends Model
     {
         return $this->belongsTo(ShopCategory::class);
     }
+
+    public function shop_following()
+    {
+        return $this->hasOne(UserShopFollow::class)
+            ->where('user_id', auth()->user()->id);
+    }
 }

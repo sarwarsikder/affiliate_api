@@ -19,7 +19,7 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products');
-
+            $table->boolean('claim')->nullable();
             $table->timestamps();
         });
     }

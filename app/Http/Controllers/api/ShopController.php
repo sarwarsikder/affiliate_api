@@ -15,9 +15,30 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ShopResource::collection(Shop::with('shop_category')->paginate(10));
+        $queryShop = Shop::query();
+        $queryShop->with('shop_following');
+
+        if (isset($request['filter']['follow'])) {
+            if ($request['filter']['follow'] == 1) {
+                $queryShop->whereHas('shop_following',function ($query){
+                    $query->where('follow', 1);
+                });
+            }
+        }else{
+            $queryShop->with('shop_following');
+        }
+
+        if (isset($request['filter']['recent_added'])) {
+            if ($request['filter']['recent_added'] == 1) {
+                $queryShop->orderBy('id', 'desc');
+            }
+        }
+
+        $queryResult = $queryShop->paginate(10);
+
+        return ShopResource::collection($queryResult);
     }
 
     /**
@@ -96,6 +117,7 @@ class ShopController extends Controller
      */
     public function shop_follow_unfollow(Request $request)
     {
+
 
         $user_shop_follow_model = new UserShopFollow();
 

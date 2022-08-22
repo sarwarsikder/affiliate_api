@@ -21,6 +21,7 @@ class ShopResource extends JsonResource
             'shop_description' => $this->shop_description,
             'shop_benefits' => $this->shop_benefits,
             'shop_category' => $this->get_shop_category($this->shop_category),
+            'shop_following' => ($this->shop_following != null) ? $this->get_shop_following($this->shop_following) : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'shop_details' => url('/') . '/api/shops/' . $this->id
@@ -32,6 +33,15 @@ class ShopResource extends JsonResource
         return [
             'id' => $shop_category->id,
             'name' => $shop_category->name,
+        ];
+    }
+
+    public function get_shop_following($shop_following)
+    {
+        return [
+            'id' => $shop_following->id,
+            'shop_id' => $shop_following->shop_id,
+            'follow' => $shop_following->follow,
         ];
     }
 }
