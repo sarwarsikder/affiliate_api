@@ -14,7 +14,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss','resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     @stack('css-styles')
 </head>
@@ -53,9 +56,6 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item">
-                            <a class="nav-link" id="home" href="javascript:void(0)">Home</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('shop')}}">Shop</a>
                         </li>
