@@ -21,5 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/free-promotion', [HomeController::class, 'free_promotion'])->name('free-promotion');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 Route::get('/shop-details/{shop_id}', [HomeController::class, 'shop_details'])->name('shop-details');

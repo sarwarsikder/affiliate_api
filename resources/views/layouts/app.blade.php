@@ -63,7 +63,7 @@
                             <a class="nav-link" href="{{route('shop')}}">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Free Promotion Claim</a>
+                            <a class="nav-link" href="{{route('free-promotion')}}">Free Promotion Claim</a>
                         </li>
 
                         <li class="nav-item dropdown">

@@ -36,6 +36,21 @@ class HomeController extends Controller
         );
         return view('home', $data);
     }
+    public function free_promotion()
+    {
+        $credentials = array(
+            'email' => 'sarwar@gmail.com',
+            'password' => '!@#$1234',
+        );
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        $data = array(
+            'token' => $token
+        );
+        return view('free_promotion', $data);
+    }
 
     public function shop()
     {
