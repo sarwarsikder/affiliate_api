@@ -25,7 +25,6 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            $(document).on('click', '#home', function () {
                 $.ajax({
                     type: 'GET',
                     url: "{{ url('/api/auth/products/') }}",
@@ -69,8 +68,6 @@
                         });
                     }
                 });
-            });
-
 
         });
 
