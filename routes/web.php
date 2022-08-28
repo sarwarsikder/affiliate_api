@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
-Route::get('php-artisan', function (){
-    Artisan::call('route:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+Route::get('/shop-details/{shop_id}', [HomeController::class, 'shop_details'])->name('shop-details');

@@ -127,17 +127,17 @@ class ShopController extends Controller
 
 
         if (count($user_shop_follow_model_data) <= 0) {
-            $user_shop_follow_model->follow = $request['follow'];
+            $user_shop_follow_model->follow = !$request['follow'];
             $user_shop_follow_model->user_id = auth()->user()->id;
             $user_shop_follow_model->shop_id = $request['shop_id'];
             $user_shop_follow_model->save();
         } else {
             $user_shop_follow_model = $user_shop_follow_model::find($user_shop_follow_model_data[0]->id);
-            $user_shop_follow_model->follow = $request['follow'];
+            $user_shop_follow_model->follow = !$request['follow'];
             $user_shop_follow_model->save();
         }
 
-        if ($request['follow']) {
+        if ($user_shop_follow_model->follow) {
             return response()->json(['message' => 'Shop successfully followed'], 201);
         } else {
             return response()->json(['message' => 'Shop successfully unfollowed'], 201);
